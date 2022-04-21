@@ -1,0 +1,813 @@
+{% extends "base_inicio.html" %}
+
+{% block titulo %} Solicitud Anticipos {% endblock%}
+
+{% block contenido %}
+
+<form class=" p-5 d-flex justify-content-center">
+  {%csrf_token%}
+    <div  class="card">
+      <div class="card-body">
+        <h1 class="card-title">Solicitud Anticipos</h1>
+        <h4 class="display-3">- Datos del solicitante</h4>
+        <hr class="my-2">
+        <div class="mb-5"></div>
+
+        <h5>Fecha diligenciamiento</h5>
+        <input type="date" name="fecha_dili">
+        <br>
+        <br>
+
+        <h5>¿Esta solicitud es para evento AOG? (Aircraft on Ground)</h5>
+        <P><input class="form-check-input" type="radio" required  name="evento_aog" value="Si" /> Si </p>
+        <P><input class="form-check-input" type="radio" required  name="evento_aog" value="No" /> No </p>
+        <br>
+
+        <h5>Tipo de colaborador</h5>
+        <P><input class="form-check-input" type="radio" required  name="t_c" value="viva_air" /> Viva Air </p>
+        <P><input class="form-check-input" type="radio" required  name="t_c" value="tercero" /> Tercero </p>
+        <br>
+
+        <h5>Entrenamiento (CREW)</h5>
+        <P><input class="form-check-input" type="radio" required  name="crew" value="Si" /> Si </p>
+        <P><input class="form-check-input" type="radio" required  name="crew" value="No" /> No </p>
+        <br>
+
+        <h5>Viaje en función de la compañía</h5>
+         <P><input class="form-check-input" type="radio" required  name="compania" value="colombia" /> Viva Air Colombia </p>
+         <P><input class="form-check-input" type="radio" required  name="compania" value="peru" /> Viva Air Perú </p>
+         <P><input class="form-check-input" type="radio" required  name="compania" value="otro" /> Otro </p>
+         <br>
+
+        <h5>Nombre completo<input class="form-control" type="text" required name="name" placeholder="Ingrese su nombre completo"/></h5>
+        <br>
+
+        <h5>Tipo identificación</h5>
+         <P><input class="form-check-input" type="radio" required  name="Tipo_Id" value="TI" /> TI </p>
+         <P><input class="form-check-input" type="radio" required  name="Tipo_Id" value="CC" /> CC </p>
+         <P><input class="form-check-input" type="radio" required  name="Tipo_Id" value="CE" /> Cédula extrangera </p>
+         <br>
+
+        <h5>Nùmero identificación<input class="form-control" type="text" required name="numero_cc" placeholder="Ingrese su número de identificación"/></h5>
+        <br>
+
+        <h5>Fecha de nacimiento</h5>
+        <input type="date" name="nacimiento">
+        <br>
+        <br>
+
+        <h5>Correo personal para comunicaciòn<input class="form-control" type="text" required name="correo" placeholder="Ingrese su correo electrónico personal"/></h5>
+        <br>
+
+        <h5>Número de contacto<input class="form-control" type="text" required name="cumero_cel" placeholder="Ingrese su número celular de contacto"/></h5>
+        <br>
+
+        <h5>Área en la que se encuentra laborando <input class="form-control" type="text" required name="area_loboral" placeholder="Ingrese su área de trabajo"/></h5>
+        <br>
+
+        <h5>Centro de costos<input class="form-control" type="text" required name="ceco" placeholder="Ingrese su CECO"/></h5>
+        <br>
+
+      </div>
+
+      <div class="mb-5"></div>
+        <div class="p-5 bg-light">
+           <div class="container">
+              <h4 class="display-3">- Finalidad del Viaje</h4>
+              <hr class="my-2">
+
+              <h5>Realice una descripción breve de la razón del viaje en el espacio a continuación												
+              <input class="form-control" type="text" required name="descripcion" placeholder="Aquí su descripción" maxlength="100"/></h5>
+              <br>
+
+              <h5>Observaciones												
+              <input class="form-control" type="text" required name="observaciones" placeholder="Aquí su observación" maxlength="100"/></h5>
+              <br>
+            </div>
+        </div>
+        
+                <div class="mb-5"></div>
+                <div class="p-5 bg-light">
+                  <div class="container">
+                    <h4 class="display-3">- Datos de viaje</h4>
+                    <hr class="my-2">
+
+                    <h5>Tipo de viaje </h5>
+                    <P><input class="form-check-input" type="radio" required  name="tipoViaje" value="nacional" id="nac"/> Nacional </p>
+                    <P><input class="form-check-input" type="radio" required  name="tipoViaje" value="internacional" id="int" /> Internacional </p>
+                    <br>
+      
+                    <h5>Solicitud de alojamiento</h5>
+                    <P><input class="form-check-input" type="radio" required  name="alojamiento" value="Si" /> Si </p>
+                    <P><input class="form-check-input" type="radio" required  name="alojamiento" value="No" /> No </p>
+                    <br>
+      
+                    <h5>Solicitud de alimentaciòn</h5>
+                    <P><input class="form-check-input" type="radio" required  name="alimentacion" value="Si" /> Si </p>
+                    <P><input class="form-check-input" type="radio" required  name="alimentacion" value="No" /> No </p>
+                    <br>
+                    <br>
+      
+                    <h5>Solicitud de transporte</h5>
+                    <P><input class="form-check-input" type="radio" required  name="solicitud_trans" value="Si" /> Si </p>
+                    <P><input class="form-check-input" type="radio" required  name="solicitud_trans" value="No" data-bs-toggle="collapse" href="#collapseDemo" /> No </p>
+                    <br>
+      
+                    <h5 class="collapse" id="collapseDemo">Renta de vehìculo</h5>
+                    <P class="collapse" id="collapseDemo"><input class="form-check-input" type="radio" required  name="renta_vh" value="Si" id="collapseDemo" /> Si </p>
+                    <P class="collapse" id="collapseDemo"><input class="form-check-input" type="radio" required  name="renta_vh" value="No" id="collapseDemo"/> No </p>
+                    <br>
+      
+                    <h5>Si sabes de un compañero que viajara para este mismo destino y mismas fechas. ¿Estarías dispuesto a compartir habitación?									
+                    </h5>
+                    <P><input class="form-check-input xx2" type="radio" required  name="xx2" value="Si" data-bs-toggle="collapse" href="#collapseExample"/> Si </p>
+                    <P><input class="form-check-input xx2" type="radio" required  name="xx2" value="No" /> No </p>
+                    <br>
+      
+      
+                    <h5 class="collapse" id="collapseExample">Nombre del compañero con el que compartirías habitación						
+                        <input class="form-control" type="text" required name="name_compi" placeholder="Ingrese su nombre completo"/></h5>
+                    <br>
+                  </div>
+                </div>
+
+                <div class="mb-5"></div>
+                <div class="p-5 bg-light">
+                  <div class="container">
+                    <div class="mb-5"></div>
+                      <hr class="my-2">
+
+                <h4 class="display-3">- Datos de viaje: Ida</h4>
+                <hr class="my-2">
+                
+                <h2>Ruta ida</h2>
+                <br>
+                <h4>Origen</h4>
+                  <select class="form-select" aria-label="Default select example" name="origenIda" id="cbxLugares">
+                    <option selected> Despliegue aqui para ver los lugares </option>
+                    <option value="armenia">Colombia - Armenia (AXM)</option>
+                    <option value="barranquilla">Colombia - Brranquilla (BAQ)</option>
+                    <option value="bogota">Colombia - Bogotà (BOG)</option>
+                    <option value="bucaramanga">Colombia - Bucaramanga (BGA)</option>
+                    <option value="cali">Colombia - Calì (CLO)</option>
+                    <option value="Cartagena">Colombia - Cartagena (CTG)</option>
+                    <option value="cucuta">Colombia - Cùcuta (CUC)</option>
+                    <option value="leticia">Colombia - Leticia (LET)</option>
+                    <option value="medellin">Colombia - Medellin (MDE)</option>
+                    <option value="monteria">Colombia - Monterìa (MTR)</option>
+                    <option value="neiva">Colombia - Neiva (NVA)</option>
+                    <option value="pasto">Colombia - Pasto (PSO)</option>
+                    <option value="pereira">Colombia - Pereira (PEI)</option>
+                    <option value="rioacha">Colombia - Rioacha (RCH)</option>
+                    <option value="sanAndres">Colombia - San Andrès (ADZ)</option>
+                    <option value="santaMarta">Colombia - Santa Marta (SMR)</option>
+                    <option value="valledupar">Colombia - Valledupar (VUP)</option>
+                    <option value="villavicencio">Colombia - Villavicencio (VVC)</option>
+                    <option value="sanPablo">Brazil - San Pablo (GRU)</option>
+                    <option value="miami">Estados Unidos - Miami (MIA)</option>
+                    <option value="orlando">Estados Unidos - Orlando (MCO)</option>
+                    <option value="cancun">Mèxico - Cancùn (CUN)</option>
+                    <option value="ciudadMexico">Mèxico - Ciudad de Mèxico (MEX)</option>
+                    <option value="cuzco">Perù - Cuzco (CUZ)</option>
+                    <option value="lima">Perù - Lima (LIM)</option>
+                    <option value="puntaCana">Republica Dominicana - Punta Cana (PUJ)</option>
+                 </select>
+                  <br>
+
+                <h4>Destino</h4>
+																<select class="form-select" aria-label="Default select example" name="destinoIda" id="cbxLugares">
+																	<option selected> Despliegue aqui para ver los lugares </option>
+																	<option value="armenia">Colombia - Armenia (AXM)</option>
+																	<option value="barranquilla">Colombia - Brranquilla (BAQ)</option>
+																	<option value="bogota">Colombia - Bogotà (BOG)</option>
+																	<option value="bucaramanga">Colombia - Bucaramanga (BGA)</option>
+																	<option value="cali">Colombia - Calì (CLO)</option>
+																	<option value="Cartagena">Colombia - Cartagena (CTG)</option>
+																	<option value="cucuta">Colombia - Cùcuta (CUC)</option>
+																	<option value="leticia">Colombia - Leticia (LET)</option>
+																	<option value="medellin">Colombia - Medellin (MDE)</option>
+																	<option value="monteria">Colombia - Monterìa (MTR)</option>
+																	<option value="neiva">Colombia - Neiva (NVA)</option>
+																	<option value="pasto">Colombia - Pasto (PSO)</option>
+																	<option value="pereira">Colombia - Pereira (PEI)</option>
+																	<option value="rioacha">Colombia - Rioacha (RCH)</option>
+																	<option value="sanAndres">Colombia - San Andrès (ADZ)</option>
+																	<option value="santaMarta">Colombia - Santa Marta (SMR)</option>
+																	<option value="valledupar">Colombia - Valledupar (VUP)</option>
+																	<option value="villavicencio">Colombia - Villavicencio (VVC)</option>
+																	<option value="sanPablo">Brazil - San Pablo (GRU)</option>
+																	<option value="miami">Estados Unidos - Miami (MIA)</option>
+																	<option value="orlando">Estados Unidos - Orlando (MCO)</option>
+																	<option value="cancun">Mèxico - Cancùn (CUN)</option>
+																	<option value="ciudadMexico">Mèxico - Ciudad de Mèxico (MEX)</option>
+																	<option value="cuzco">Perù - Cuzco (CUZ)</option>
+																	<option value="lima">Perù - Lima (LIM)</option>
+																	<option value="puntaCana">Republica Dominicana - Punta Cana (PUJ)</option>
+														</select>
+                  <br>
+
+                  <h5>Fecha de ida</h5>
+                  <input type="date" name="fechaIda">
+                  <br>
+                  <br>
+                  <h5>Hora del vuelo</h5>
+                  <input type="time" name="hora_vueloIda">
+                      
+            </div>
+          </div>
+
+          <div class="mb-5"></div>
+          <div class="p-5 bg-light">
+            <div class="container">
+              <div class="mb-5"></div>
+                <hr class="my-2">
+
+                <h4 class="display-3">- Datos de viaje: Regreso</h4>
+                <hr class="my-2">
+                
+                <h2>Ruta ida</h2>
+                <br>
+                <h4>Origen</h4>
+																<select class="form-select" aria-label="Default select example" name="origenRegreso" id="cbxLugares">
+																	<option selected> Despliegue aqui para ver los lugares </option>
+																	<option value="armenia">Colombia - Armenia (AXM)</option>
+																	<option value="barranquilla">Colombia - Brranquilla (BAQ)</option>
+																	<option value="bogota">Colombia - Bogotà (BOG)</option>
+																	<option value="bucaramanga">Colombia - Bucaramanga (BGA)</option>
+																	<option value="cali">Colombia - Calì (CLO)</option>
+																	<option value="Cartagena">Colombia - Cartagena (CTG)</option>
+																	<option value="cucuta">Colombia - Cùcuta (CUC)</option>
+																	<option value="leticia">Colombia - Leticia (LET)</option>
+																	<option value="medellin">Colombia - Medellin (MDE)</option>
+																	<option value="monteria">Colombia - Monterìa (MTR)</option>
+																	<option value="neiva">Colombia - Neiva (NVA)</option>
+																	<option value="pasto">Colombia - Pasto (PSO)</option>
+																	<option value="pereira">Colombia - Pereira (PEI)</option>
+																	<option value="rioacha">Colombia - Rioacha (RCH)</option>
+																	<option value="sanAndres">Colombia - San Andrès (ADZ)</option>
+																	<option value="santaMarta">Colombia - Santa Marta (SMR)</option>
+																	<option value="valledupar">Colombia - Valledupar (VUP)</option>
+																	<option value="villavicencio">Colombia - Villavicencio (VVC)</option>
+																	<option value="sanPablo">Brazil - San Pablo (GRU)</option>
+																	<option value="miami">Estados Unidos - Miami (MIA)</option>
+																	<option value="orlando">Estados Unidos - Orlando (MCO)</option>
+																	<option value="cancun">Mèxico - Cancùn (CUN)</option>
+																	<option value="ciudadMexico">Mèxico - Ciudad de Mèxico (MEX)</option>
+																	<option value="cuzco">Perù - Cuzco (CUZ)</option>
+																	<option value="lima">Perù - Lima (LIM)</option>
+																	<option value="puntaCana">Republica Dominicana - Punta Cana (PUJ)</option>
+														</select>
+                  <br>
+
+                <h4>Destino</h4>
+																<select class="form-select" aria-label="Default select example" name="destinoRegreso" id="cbxLugares">
+																	<option selected> Despliegue aqui para ver los lugares </option>
+																	<option value="armenia">Colombia - Armenia (AXM)</option>
+																	<option value="barranquilla">Colombia - Brranquilla (BAQ)</option>
+																	<option value="bogota">Colombia - Bogotà (BOG)</option>
+																	<option value="bucaramanga">Colombia - Bucaramanga (BGA)</option>
+																	<option value="cali">Colombia - Calì (CLO)</option>
+																	<option value="Cartagena">Colombia - Cartagena (CTG)</option>
+																	<option value="cucuta">Colombia - Cùcuta (CUC)</option>
+																	<option value="leticia">Colombia - Leticia (LET)</option>
+																	<option value="medellin">Colombia - Medellin (MDE)</option>
+																	<option value="monteria">Colombia - Monterìa (MTR)</option>
+																	<option value="neiva">Colombia - Neiva (NVA)</option>
+																	<option value="pasto">Colombia - Pasto (PSO)</option>
+																	<option value="pereira">Colombia - Pereira (PEI)</option>
+																	<option value="rioacha">Colombia - Rioacha (RCH)</option>
+																	<option value="sanAndres">Colombia - San Andrès (ADZ)</option>
+																	<option value="santaMarta">Colombia - Santa Marta (SMR)</option>
+																	<option value="valledupar">Colombia - Valledupar (VUP)</option>
+																	<option value="villavicencio">Colombia - Villavicencio (VVC)</option>
+																	<option value="sanPablo">Brazil - San Pablo (GRU)</option>
+																	<option value="miami">Estados Unidos - Miami (MIA)</option>
+																	<option value="orlando">Estados Unidos - Orlando (MCO)</option>
+																	<option value="cancun">Mèxico - Cancùn (CUN)</option>
+																	<option value="ciudadMexico">Mèxico - Ciudad de Mèxico (MEX)</option>
+																	<option value="cuzco">Perù - Cuzco (CUZ)</option>
+																	<option value="lima">Perù - Lima (LIM)</option>
+																	<option value="puntaCana">Republica Dominicana - Punta Cana (PUJ)</option>
+														</select>
+                  <br>
+
+                  <h5>Fecha de ida</h5>
+                  <input type="date" name="fechaRegreso">
+                  <br>
+                  <br>
+                  <h5>Hora del vuelo</h5>
+                  <input type="time" name="hora_vueloRegreso">
+                      
+            </div>
+          </div>
+
+          <div class="mb-5"></div>
+            <div class="p-5 bg-light">
+              <div class="container">
+                <h4 class="display-3">- Anticipos</h4>
+                <hr class="my-2">
+                  <h5>Seleccione la moneda con la que se realizarà los anticipos				
+                  </h5>
+                  <p>
+																			<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+																					COP (Pesos colombianos)
+																			</button>
+																	</p>
+																	<div class="collapse" id="collapseExample">
+																			<div class="card card-body">
+																				<div class="mb-5"></div>
+																				<div class="p-5 bg-light">
+																								<div class="container">
+																												<h4 class="display-3">- Ìtem COP</h4>
+																												<hr class="my-2">
+																				
+																												<table class="table">
+																																<thead>
+																																		<tr>
+																																				<th scope="col">ìtem</th>
+																																				<th scope="col">Valor por dìa</th>
+																																				<th scope="col">Nùmero de dìas solicitados</th>
+																																				<th scope="col">Total</th>
+																																		</tr>
+																																</thead>
+																																<tbody>
+																																		<tr>
+																																				<th scope="row">Transporte Residencia-Aeropuerto-Residencia (Una sola vez)</th>
+																																				<td> COP 150.000</td>
+																																				<td>
+																																						<select class="form-control" id="transportDropDowm">
+																																								<option value="0">0</option>
+																																								<option value="1">1</option>
+																																						</select>
+																																						<td id="transportTotal"></td>
+																																						
+																																		</tr>
+																																		<tr>
+																																				<th scope="row">Alimentación</th>
+																																				<td>COP 25.000</td>
+																																				<td>
+																																						<input class="form-control" type="text" required name="alimentacion" placeholder="# dìas" id="downDropsintt"/>
+																																						</select>
+																																				</td>
+																																				<td id="dropdowntt"></td>
+																																		</tr>
+																																		<tr>
+																																				<th scope="row">Transporte desde y hacia aeropuerto en ciudad destino (Una sola vez)</th>
+																																				<td>COP 50.000</td>
+																																				<td>
+																																						<select class="form-control" id="tablaselect">
+																																								<option value="0">0</option>
+																																								<option value="1">1</option>
+																																						</select>
+																																				</td>
+																																				<td id="selectTotal"></td>
+																																		</tr>
+																																		<tr>
+																																				<th scope="row">Transporte en ciudad destino</th>
+																																				<td>COP 20.000</td>
+																																				<td>
+																																						<input class="form-control" type="text" required name="trans_destino" placeholder="# dìas" id="lol"/>
+																																						</select>
+																																				</td>
+																																				<td id="xdtt"></td>
+																																		</tr>
+																																		<tr>
+																																				<th scope="row">Otros Gastos (Carné Aeropuerto, Pago hotel sin convenio, entre otros)</th>
+																																				<td>COP 500.000</td>
+																																				<td>
+																																						<input class="form-control" type="text" required name="another" placeholder="# dìas" id="foo"/>
+																																				</td>
+																																				<td id="guu"></td>
+																																		</tr>
+																																		<tr>
+																																		<th scope="row">Total final</th>
+																																		<td id="nmms"></td>
+																																</tr>
+																				
+																																</tbody>
+																														</table>
+																												</div>
+																										</div>
+																										</div>
+																										
+																									
+																				
+																												<div class=" p-2 d-flex justify-content-center">
+																																<a class="btn btn-primary btn-lg" href="{% url 'inicio_de_sesion' %}" role="button">Enviar :)</a>
+																												</div>
+																				
+																								</div>
+																				</div>
+																				<br>
+																				<p>
+																					<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+																							PEN (Soles)
+																					</button>
+																			</p>
+																			<div class="collapse" id="collapseExample1">
+																					<div class="card card-body">
+																						<div class="mb-5"></div>
+																					<div class="p-5 bg-light">
+																									<div class="container">
+																													<h4 class="display-3">- Ìtem PEN</h4>
+																													<hr class="my-2">
+
+																													<table class="table">
+																																	<thead>
+																																			<tr>
+																																					<th scope="col">ìtem</th>
+																																					<th scope="col">Valor por dìa</th>
+																																					<th scope="col">Nùmero de dìas solicitados</th>
+																																					<th scope="col">Total</th>
+																																			</tr>
+																																	</thead>
+																																	<tbody>
+																																			<tr>
+																																					<th scope="row">Transporte Residencia-Aeropuerto-Residencia (Una sola vez)</th>
+																																					<td> S 60</td>
+																																					<td>
+																																							<select class="form-control" id="sol">
+																																									<option value="0">0</option>
+																																									<option value="1">1</option>
+																																							</select>
+																																							<td id="solTotal"></td>
+																																							
+																																			</tr>
+																																			<tr>
+																																					<th scope="row">Alimentación</th>
+																																					<td>S 25</td>
+																																					<td>
+																																							<input class="form-control" type="text" required name="alimento" placeholder="# dìas" id="alimentacionItem"/>
+																																					</td>
+																																					<td id="alimentacionTotal"></td>
+																																			</tr>
+																																			<tr>
+																																					<th scope="row">Transporte desde y hacia aeropuerto en ciudad destino (Una sola vez)</th>
+																																					<td>S 60</td>
+																																					<td>
+																																							<select class="form-control" id="selectTable">
+																																									<option value="0">0</option>
+																																									<option value="1">1</option>
+																																							</select>
+																																					</td>
+																																					<td id="selectTable_total"></td>
+																																			</tr>
+																																			<tr>
+																																					<th scope="row">Transporte en ciudad destino</th>
+																																					<td>S 20</td>
+																																					<td>
+																																							<input class="form-control" type="text" required name="destinoTrans" placeholder="# dìas" id="tcd"/>
+																																					</td>
+																																					<td id="tcdTT"></td>
+																																			</tr>
+																																			<tr>
+																																					<th scope="row">Otros Gastos (Carné Aeropuerto, Pago hotel sin convenio, entre otros)</th>
+																																					<td>S 500</td>
+																																					<td>
+																																							<input class="form-control" type="text" required name="gastos_dobles" placeholder="# dìas" id="ahri"/>
+																																					</td>
+																																					<td id="mana"></td>
+																																			</tr>
+																																			<tr>
+																																					<th scope="row">Total final</th>
+																																					<td id="world"></td>
+																																			</tr>
+																																	</tbody>
+																															</table>
+																													</div>
+																											</div>
+																											</div>
+																											
+
+
+																													<div class=" p-2 d-flex justify-content-center">
+																																	<a class="btn btn-primary btn-lg" href="{% url 'inicio_de_sesion' %}" role="button">Enviar :)</a>
+																													</div>
+
+																									</div>
+																					</div>
+																					<br>
+																					<p>
+																						<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampledos" aria-expanded="false" aria-controls="collapseExampledos">
+																								USD (Dolares)
+																						</button>
+																				</p>
+																				
+																				<div class="collapse" id="collapseExampledos">
+																						<div class="card card-body">
+																							<div class="mb-5"></div>
+																							<div class="p-5 bg-light">
+																											<div class="container">
+																															<h4 class="display-3">- Ìtem USD</h4>
+																															<hr class="my-2">
+																							
+																															<table class="table">
+																																			<thead>
+																																					<tr>
+																																							<th scope="col">ìtem</th>
+																																							<th scope="col">Valor por dìa</th>
+																																							<th scope="col">Nùmero de dìas solicitados</th>
+																																							<th scope="col">Total</th>
+																																					</tr>
+																																			</thead>
+																																			<tbody>
+																																					<tr>
+																																							<th scope="row">Transporte Residencia-Aeropuerto-Residencia (Una sola vez)</th>
+																																							<td> USD 30</td>
+																																							<td>
+																																									<select class="form-control" id="dolar">
+																																											<option value="0">0</option>
+																																											<option value="1">1</option>
+																																									</select>
+																																									<td id="dolarTotal"></td>
+																																									
+																																					</tr>
+																																					<tr>
+																																							<th scope="row">Alimentación</th>
+																																							<td>USD 20</td>
+																																							<td>
+																																									<input class="form-control" type="text" required name="proviciones" placeholder="# dìas" id="dolares"/>
+																																							</td>
+																																							<td id="dolaresTotal"></td>
+																																					</tr>
+																																					<tr>
+																																							<th scope="row">Transporte desde y hacia aeropuerto en ciudad destino (Una sola vez)</th>
+																																							<td>USD 30</td>
+																																							<td>
+																																									<select class="form-control" id="usds">
+																																											<option value="0">0</option>
+																																											<option value="1">1</option>
+																																									</select>
+																																							</td>
+																																							<td id="usdsTotal"></td>
+																																					</tr>
+																																					<tr>
+																																							<th scope="row">Transporte en ciudad destino</th>
+																																							<td>USD 30</td>
+																																							<td>
+																																									<input class="form-control" type="text" required name="destiny" placeholder="# dìas" id="TransportCity"/>
+																																							</td>
+																																							<td id="TransportCity_Total"></td>
+																																					</tr>
+																																					<tr>
+																																							<th scope="row">Otros Gastos (Carné Aeropuerto, Pago hotel sin convenio, entre otros)</th>
+																																							<td>USD 500</td>
+																																							<td>
+																																									<input class="form-control" type="text" required name="gastos_demas" placeholder="# dìas" id="akali"/>
+																																							</td>
+																																							<td id="zone"></td>
+																																					</tr>
+																																					<tr>
+																																							<th scope="row">Total final</th>
+																																							<td id="hola"></td>
+																																					</tr>
+																																			</tbody>
+																																	</table>
+																															</div>
+																													</div>
+																													</div>
+																							
+																															<div class=" p-2 d-flex justify-content-center">
+																																			<a class="btn btn-primary btn-lg" href="{% url 'inicio_de_sesion' %}" role="button">Enviar :)</a>
+																															</div>
+																							
+																											</div>
+																							</div>
+																						</div>
+																				</div>
+
+																				
+																					</div>
+																			</div>
+																			</div>
+																	</div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+             </div>
+            </html>
+          </div>
+        </div>
+    </div>    
+</form>
+<span id="cbxLugaresSeleccionados"></span>
+<script src="ex288_evento_onchange_select.js"></script>
+<script>
+
+		
+var cop = [150000, 25000, 50000, 20000, 500000] 
+
+		document.getElementById('transportDropDowm').addEventListener('change', function(event) {
+				num1 = cop[0] ;
+				console.log(num1);
+				console.log(event.target.value)
+				num2 = event.target.value;
+				document.getElementById(
+						"transportTotal").innerHTML = num1 * num2;
+						totalizar()
+		});
+
+var cop = [150000, 25000, 50000, 20000,  500000] 
+		document.getElementById('downDropsintt').addEventListener('change', function(event) {
+				num1 = cop[1] ;
+				console.log(num1);
+				console.log(event.target.value)
+				num2 = event.target.value;
+				document.getElementById(
+				"dropdowntt").innerHTML = num1 * num2;
+				totalizar()
+
+		});
+
+var cop = [150000, 25000, 50000, 20000,  500000] 
+		document.getElementById('tablaselect').addEventListener('change', function(event) {
+				num1 = cop[2] ;
+				console.log(num1);
+				console.log(event.target.value)
+				num2 = event.target.value;
+				document.getElementById(
+				"selectTotal").innerHTML = num1 * num2;
+				totalizar()
+		});
+
+var cop = [150000, 25000, 50000, 20000,  500000] 
+		document.getElementById('lol').addEventListener('change', function(event) {
+				num1 = cop[3] ;
+				console.log(num1);
+				console.log(event.target.value)
+				num2 = event.target.value;
+				document.getElementById(
+				"xdtt").innerHTML = num1 * num2;
+				totalizar()
+});
+
+var cop = [150000, 25000, 50000, 20000, 500000] 
+		document.getElementById('foo').addEventListener('change', function(event) {
+				num1 = cop[4] ;
+				console.log(num1);
+				console.log(event.target.value)
+				num2 = event.target.value;
+				document.getElementById(
+				"guu").innerHTML = num1 * num2;
+				totalizar()
+});
+
+var cop = [150000, 25000, 50000, 20000, 500000] 
+function totalizar()  {
+				let v1=Math.round($('#transportTotal').html());
+				let v2=Math.round($('#dropdowntt').html());
+				let v3=Math.round($('#selectTotal').html());
+				let v4=Math.round($('#xdtt').html());
+				let v5=Math.round($('#guu').html());
+
+				let Total = v1 + v2 + v3 +v4 + v5;
+				$('#nmms').html(Total.toLocaleString());
+				
+};
+	
+	var pen = [60, 25, 60, 20, 500] 
+	
+			document.getElementById('sol').addEventListener('change', function(event) {
+					num1 = pen[0] ;
+					console.log(num1);
+					console.log(event.target.value)
+					num2 = event.target.value;
+					document.getElementById(
+							"solTotal").innerHTML = num1 * num2;
+							totalizar()
+			});
+	
+	var pen = [60, 25, 60, 20, 500] 
+			document.getElementById('alimentacionItem').addEventListener('change', function(event) {
+					num1 = pen[1] ;
+					console.log(num1);
+					console.log(event.target.value)
+					num2 = event.target.value;
+					document.getElementById(
+					"alimentacionTotal").innerHTML = num1 * num2;
+					totalizar()
+	
+			});
+	
+	var pen = [60, 25, 60, 20, 500] 
+			document.getElementById('selectTable').addEventListener('change', function(event) {
+					num1 = pen[2] ;
+					console.log(num1);
+					console.log(event.target.value)
+					num2 = event.target.value;
+					document.getElementById(
+					"selectTable_total").innerHTML = num1 * num2;
+					totalizar()
+			});
+	
+	var pen = [60, 25, 60, 20, 500] 
+			document.getElementById('tcd').addEventListener('change', function(event) {
+					num1 = pen[3] ;
+					console.log(num1);
+					console.log(event.target.value)
+					num2 = event.target.value;
+					document.getElementById(
+					"tcdTT").innerHTML = num1 * num2;
+					totalizar()
+	});
+	
+	var pen = [60, 25, 60, 20, 500]  
+			document.getElementById('ahri').addEventListener('change', function(event) {
+					num1 = pen[4] ;
+					console.log(num1);
+					console.log(event.target.value)
+					num2 = event.target.value;
+					document.getElementById(
+					"mana").innerHTML = num1 * num2;
+					totalizar()
+	});
+
+	var pen = [60, 25, 60, 20, 5000] 
+	function totalizar()  {
+					let v1=Math.round($('#solTotal').html());
+					let v2=Math.round($('#alimentacionTotal').html());
+					let v3=Math.round($('#selectTable_total').html());
+					let v4=Math.round($('#tcdTT').html());
+					let v5=Math.round($('#mana').html());
+
+					let Total = v1 + v2 + v3 +v4 + v5;
+					$('#world').html(Total.toLocaleString());  
+	};																										
+																		
+var usd = [30, 20, 30, 30, 500] 
+
+	document.getElementById('dolar').addEventListener('change', function(event) {
+			num1 = usd[0] ;
+			console.log(num1);
+			console.log(event.target.value)
+			num2 = event.target.value;
+			document.getElementById(
+					"dolarTotal").innerHTML = num1 * num2 * trmHoy;
+					totalizar()
+	});
+
+var usd = [30, 20, 30, 30, 500] 
+
+document.getElementById('dolares').addEventListener('change', function(event) {
+	num1 = usd[1] ;
+	console.log(num1);
+	console.log(event.target.value)
+	num2 = event.target.value;
+	document.getElementById(
+			"dolaresTotal").innerHTML = num1 * num2 *trmHoy;
+			totalizar()
+	});
+
+var usd = [30, 20, 30, 30, 500] 
+
+document.getElementById('usds').addEventListener('change', function(event) {
+	num1 = usd[2] ;
+	console.log(num1);
+	console.log(event.target.value)
+	num2 = event.target.value;
+	document.getElementById(
+			"usdsTotal").innerHTML = num1 * num2 * trmHoy;
+			totalizar()
+	});
+	
+var usd = [30, 20, 30, 30, 500] 
+	document.getElementById('TransportCity').addEventListener('change', function(event) {
+			num1 = usd[3] ;
+			console.log(num1);
+			console.log(event.target.value)
+			num2 = event.target.value;
+			document.getElementById(
+			"TransportCity_Total").innerHTML = num1 * num2 * trmHoy;
+			totalizar()
+});
+
+var usd = [30, 20, 30, 30, 500] 
+	document.getElementById('akali').addEventListener('change', function(event) {
+			num1 = usd[4] ;
+			console.log(num1);
+			console.log(event.target.value)
+			num2 = event.target.value;
+			document.getElementById(
+			"zone").innerHTML = num1 * num2 * trmHoy;
+			totalizar()
+});
+
+var cop = [150000, 25000, 50000, 20000, 500000] 
+function totalizar()  {
+			let v1=Math.round($('#dolarTotal').html());
+			let v2=Math.round($('#dolaresTotal').html());
+			let v3=Math.round($('#usdsTotal').html());
+			let v4=Math.round($('#TransportCity_Total').html());
+			let v5=Math.round($('#zone').html());
+
+			let Total = v1 + v2 + v3 +v4 + v5;
+			$('#hola').html(Total.toLocaleString());
+			
+};
+</script>
+
+{% endblock%}

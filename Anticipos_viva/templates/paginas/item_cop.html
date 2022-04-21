@@ -1,0 +1,165 @@
+{% extends "base_inicio.html" %}
+
+{% block titulo %} Inicio {% endblock%}
+
+{% block contenido %}
+<div class="mb-5"></div>
+<div class="p-5 bg-light">
+    <div class="container">
+        <h4 class="display-3">- Ìtem COP</h4>
+        <hr class="my-2">
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ìtem</th>
+                <th scope="col">Valor por dìa</th>
+                <th scope="col">Nùmero de dìas solicitados</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Transporte Residencia-Aeropuerto-Residencia (Una sola vez)</th>
+                <td id="numuno"> COP 150.000</td>
+                <td>
+                  <select class="form-control" id="transportDropDowm">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                  </select>
+                  <td id="transportTotal"></td>
+                  
+              </tr>
+              <tr>
+                <th scope="row">Alimentación</th>
+                <td>COP 25.000</td>
+                <td>
+                  <input class="form-control" type="text" required name="alimentacion" placeholder="# dìas" id="downDropsintt"/>
+                  </select>
+                </td>
+                <td id="dropdowntt"></td>
+              </tr>
+              <tr>
+                <th scope="row">Transporte desde y hacia aeropuerto en ciudad destino (Una sola vez)</th>
+                <td>COP 50.000</td>
+                <td>
+                  <select class="form-control" id="tablaselect">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                  </select>
+                </td>
+                <td id="selectTotal"></td>
+              </tr>
+              <tr>
+                <th scope="row">Transporte en ciudad destino</th>
+                <td>COP 20.000</td>
+                <td>
+                  <input class="form-control" type="text" required name="trans_destino" placeholder="# dìas" id="lol"/>
+                  </select>
+                </td>
+                <td id="xdtt"></td>
+              </tr>
+              <tr>
+                <th scope="row">Otros Gastos (Carné Aeropuerto, Pago hotel sin convenio, entre otros)</th>
+                <td>COP 500.000</td>
+                <td>
+                  <input class="form-control" type="text" required name="another" placeholder="# dìas" id="foo"/>
+                </td>
+                <td id="guu"></td>
+              </tr>
+              <tr>
+              <th scope="row">Total final</th>
+              <td id="nmms"></td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+      
+      <script>
+      
+      var cop = [150000, 25000, 50000, 20000,  500000] 
+      
+        document.getElementById('transportDropDowm').addEventListener('change', function(event) {
+          num1 = cop[0] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+            "transportTotal").innerHTML = num1 * num2;
+            totalizar()
+        });
+      
+      var cop = [150000, 25000, 50000, 20000,  500000] 
+        document.getElementById('downDropsintt').addEventListener('change', function(event) {
+          num1 = cop[1] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "dropdowntt").innerHTML = num1 * num2;
+          totalizar()
+      
+        });
+      
+      var cop = [150000, 25000, 50000, 20000,  500000] 
+        document.getElementById('tablaselect').addEventListener('change', function(event) {
+          num1 = cop[2] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "selectTotal").innerHTML = num1 * num2;
+          totalizar()
+        });
+      
+      var cop = [150000, 25000, 50000, 20000,  500000] 
+        document.getElementById('lol').addEventListener('change', function(event) {
+          num1 = cop[3] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "xdtt").innerHTML = num1 * num2;
+          totalizar()
+      });
+      
+      var cop = [150000, 25000, 50000, 20000, 500000] 
+        document.getElementById('foo').addEventListener('change', function(event) {
+          num1 = cop[4] ;
+          console.log(num1);
+          console.log(event.target.value)
+          console.log('Proof text', event.target.value)
+          console.log('What is the value of this item', num1)
+          console.log('What is this another item', event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "guu").innerHTML = num1 * num2;
+          totalizar()
+      });
+
+      var cop = [150000, 25000, 50000, 20000, 500000] 
+      function totalizar()  {
+          let v1=Math.round($('#transportTotal').html());
+          let v2=Math.round($('#dropdowntt').html());
+          let v3=Math.round($('#selectTotal').html());
+          let v4=Math.round($('#xdtt').html());
+          let v5=Math.round($('#guu').html());
+
+          let Total = v1 + v2 + v3 +v4 + v5;
+          $('#nmms').html(Total.toLocaleString());
+          
+      };
+      
+      </script>
+
+        <div class=" p-2 d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg" href="{% url 'inicio_de_sesion' %}" role="button">Enviar :)</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock%}

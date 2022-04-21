@@ -1,0 +1,158 @@
+{% extends "base_inicio.html" %}
+
+{% block titulo %} Inicio {% endblock%}
+
+{% block contenido %}
+<div class="mb-5"></div>
+<div class="p-5 bg-light">
+    <div class="container">
+        <h4 class="display-3">- Ìtem PEN</h4>
+        <hr class="my-2">
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ìtem</th>
+                <th scope="col">Valor por dìa</th>
+                <th scope="col">Nùmero de dìas solicitados</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Transporte Residencia-Aeropuerto-Residencia (Una sola vez)</th>
+                <td> S 60</td>
+                <td>
+                  <select class="form-control" id="sol">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                  </select>
+                  <td id="solTotal"></td>
+                  
+              </tr>
+              <tr>
+                <th scope="row">Alimentación</th>
+                <td>S 25</td>
+                <td>
+                  <input class="form-control" type="text" required name="alimento" placeholder="# dìas" id="alimentacionItem"/>
+                </td>
+                <td id="alimentacionTotal"></td>
+              </tr>
+              <tr>
+                <th scope="row">Transporte desde y hacia aeropuerto en ciudad destino (Una sola vez)</th>
+                <td>S 60</td>
+                <td>
+                  <select class="form-control" id="selectTable">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                  </select>
+                </td>
+                <td id="selectTable_total"></td>
+              </tr>
+              <tr>
+                <th scope="row">Transporte en ciudad destino</th>
+                <td>S 20</td>
+                <td>
+                  <input class="form-control" type="text" required name="destinoTrans" placeholder="# dìas" id="tcd"/>
+                </td>
+                <td id="tcdTT"></td>
+              </tr>
+              <tr>
+                <th scope="row">Otros Gastos (Carné Aeropuerto, Pago hotel sin convenio, entre otros)</th>
+                <td>S 500</td>
+                <td>
+                  <input class="form-control" type="text" required name="gastos_dobles" placeholder="# dìas" id="ahri"/>
+                </td>
+                <td id="mana"></td>
+              </tr>
+              <tr>
+                <th scope="row">Total final</th>
+                <td id="world"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+      
+      <script>
+      
+      var pen = [60, 25, 60, 20, 500] 
+      
+        document.getElementById('sol').addEventListener('change', function(event) {
+          num1 = pen[0] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+            "solTotal").innerHTML = num1 * num2 * trm_penHoy;
+            totalizar()
+        });
+      
+      var pen = [60, 25, 60, 20, 500] 
+        document.getElementById('alimentacionItem').addEventListener('change', function(event) {
+          num1 = pen[1] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "alimentacionTotal").innerHTML = num1 * num2 * trm_penHoy;
+          totalizar()
+      
+        });
+      
+      var pen = [60, 25, 60, 20, 500] 
+        document.getElementById('selectTable').addEventListener('change', function(event) {
+          num1 = pen[2] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "selectTable_total").innerHTML = num1 * num2 * trm_penHoy;
+          totalizar()
+        });
+      
+      var pen = [60, 25, 60, 20, 500] 
+        document.getElementById('tcd').addEventListener('change', function(event) {
+          num1 = pen[3] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "tcdTT").innerHTML = num1 * num2 * trm_penHoy;
+          totalizar()
+      });
+      
+      var pen = [60, 25, 60, 20, 500]  
+        document.getElementById('ahri').addEventListener('change', function(event) {
+          num1 = pen[4] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "mana").innerHTML = num1 * num2 * trm_penHoy;
+          totalizar()
+      });
+
+      var pen = [60, 25, 60, 20, 5000] 
+      function totalizar()  {
+          let v1=Math.round($('#solTotal').html());
+          let v2=Math.round($('#alimentacionTotal').html());
+          let v3=Math.round($('#selectTable_total').html());
+          let v4=Math.round($('#tcdTT').html());
+          let v5=Math.round($('#mana').html());
+
+          let Total = v1 + v2 + v3 +v4 + v5;
+          $('#world').html(Total.toLocaleString());  
+      };
+      
+      </script>>
+
+        <div class=" p-2 d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg" href="{% url 'inicio_de_sesion' %}" role="button">Enviar :)</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock%}

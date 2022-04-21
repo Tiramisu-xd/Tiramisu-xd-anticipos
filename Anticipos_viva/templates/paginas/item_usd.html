@@ -1,0 +1,158 @@
+{% extends "base_inicio.html" %}
+
+{% block titulo %} Inicio {% endblock%}
+
+{% block contenido %}
+<div class="mb-5"></div>
+<div class="p-5 bg-light">
+    <div class="container">
+        <h4 class="display-3">- Ìtem USD</h4>
+        <hr class="my-2">
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ìtem</th>
+                <th scope="col">Valor por dìa</th>
+                <th scope="col">Nùmero de dìas solicitados</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Transporte Residencia-Aeropuerto-Residencia (Una sola vez)</th>
+                <td> USD 30</td>
+                <td>
+                  <select class="form-control" id="dolar">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                  </select>
+                  <td id="dolarTotal"></td>
+                  
+              </tr>
+              <tr>
+                <th scope="row">Alimentación</th>
+                <td>USD 20</td>
+                <td>
+                  <input class="form-control" type="text" required name="proviciones" placeholder="# dìas" id="dolares"/>
+                </td>
+                <td id="dolaresTotal"></td>
+              </tr>
+              <tr>
+                <th scope="row">Transporte desde y hacia aeropuerto en ciudad destino (Una sola vez)</th>
+                <td>USD 30</td>
+                <td>
+                  <select class="form-control" id="usds">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                  </select>
+                </td>
+                <td id="usdsTotal"></td>
+              </tr>
+              <tr>
+                <th scope="row">Transporte en ciudad destino</th>
+                <td>USD 30</td>
+                <td>
+                  <input class="form-control" type="text" required name="destiny" placeholder="# dìas" id="TransportCity"/>
+                </td>
+                <td id="TransportCity_Total"></td>
+              </tr>
+              <tr>
+                <th scope="row">Otros Gastos (Carné Aeropuerto, Pago hotel sin convenio, entre otros)</th>
+                <td>USD 500</td>
+                <td>
+                  <input class="form-control" type="text" required name="gastos_demas" placeholder="# dìas" id="akali"/>
+                </td>
+                <td id="zone"></td>
+              </tr>
+              <tr>
+                <th scope="row">Total final</th>
+                <td id="hola"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+      
+      <script>
+    var usd = [30, 20, 30, 30, 500] 
+      
+        document.getElementById('dolar').addEventListener('change', function(event) {
+          num1 = usd[0] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+            "dolarTotal").innerHTML = num1 * num2 * trmHoy;
+            totalizar()
+        });
+      
+    var usd = [30, 20, 30, 30, 500] 
+      
+      document.getElementById('dolares').addEventListener('change', function(event) {
+        num1 = usd[1] ;
+        console.log(num1);
+        console.log(event.target.value)
+        num2 = event.target.value;
+        document.getElementById(
+          "dolaresTotal").innerHTML = num1 * num2 *trmHoy;
+          totalizar()
+        });
+      
+    var usd = [30, 20, 30, 30, 500] 
+      
+      document.getElementById('usds').addEventListener('change', function(event) {
+        num1 = usd[2] ;
+        console.log(num1);
+        console.log(event.target.value)
+        num2 = event.target.value;
+        document.getElementById(
+          "usdsTotal").innerHTML = num1 * num2 * trmHoy;
+          totalizar()
+        });
+        
+    var usd = [30, 20, 30, 30, 500] 
+        document.getElementById('TransportCity').addEventListener('change', function(event) {
+          num1 = usd[3] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "TransportCity_Total").innerHTML = num1 * num2 * trmHoy;
+          totalizar()
+      });
+      
+    var usd = [30, 20, 30, 30, 500] 
+        document.getElementById('akali').addEventListener('change', function(event) {
+          num1 = usd[4] ;
+          console.log(num1);
+          console.log(event.target.value)
+          num2 = event.target.value;
+          document.getElementById(
+          "zone").innerHTML = num1 * num2 * trmHoy;
+          totalizar()
+      });
+
+      var cop = [150000, 25000, 50000, 20000, 500000] 
+      function totalizar()  {
+          let v1=Math.round($('#dolarTotal').html());
+          let v2=Math.round($('#dolaresTotal').html());
+          let v3=Math.round($('#usdsTotal').html());
+          let v4=Math.round($('#TransportCity_Total').html());
+          let v5=Math.round($('#zone').html());
+
+          let Total = v1 + v2 + v3 +v4 + v5;
+          $('#hola').html(Total.toLocaleString());
+          
+      };
+      </script>>
+
+        <div class=" p-2 d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg" href="{% url 'inicio_de_sesion' %}" role="button">Enviar :)</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock%}
